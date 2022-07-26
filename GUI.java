@@ -11,6 +11,10 @@ public class GUI {
    ImageIcon motto = new ImageIcon("assets/motto.png");
    JLabel motto_l = new JLabel(motto);
    frame.add(motto_l);
+  //Aranyak: lines 15 - 
+   ImageIcon water = new ImageIcon("assets/MenuWaterDroplet.png");
+   JLabel menu = new JLabel(water);
+   frame.add(menu);
    InputStream is = GUI.class.getResourceAsStream("LeagueSpartan-Bold.ttf");
    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
    Font biggerFont = font.deriveFont(Font.BOLD, 48f);
