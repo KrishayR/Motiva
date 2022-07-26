@@ -12,9 +12,14 @@ public class GUI {
    JLabel motto_l = new JLabel(motto);
    frame.add(motto_l);
   //Aranyak: lines 15 - 
+   
    ImageIcon water = new ImageIcon("assets/MenuWaterDroplet.png");
-   JLabel menu = new JLabel(water);
+   Image newImage = water.getImage().getScaledInstance(50, 70, Image.SCALE_DEFAULT);
+   ImageIcon waterResize = new ImageIcon(newImage);
+   JLabel menu = new JLabel(waterResize);
    frame.add(menu);
+  
+  
    InputStream is = GUI.class.getResourceAsStream("LeagueSpartan-Bold.ttf");
    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
    Font biggerFont = font.deriveFont(Font.BOLD, 48f);
