@@ -1,4 +1,4 @@
-// Krishay lines 1 - 35
+// Krishay
 import java.awt.*;
 import javax.swing.*;
 import java.io.IOException;
@@ -11,15 +11,6 @@ public class GUI {
    ImageIcon motto = new ImageIcon("assets/motto.png");
    JLabel motto_l = new JLabel(motto);
    frame.add(motto_l);
-  //Aranyak: lines 15 - 
-   
-   ImageIcon water = new ImageIcon("assets/MenuWaterDroplet.png");
-   Image newImage = water.getImage().getScaledInstance(50, 70, Image.SCALE_DEFAULT);
-   ImageIcon waterResize = new ImageIcon(newImage);
-   JLabel menu = new JLabel(waterResize);
-   frame.add(menu);
-  
-  
    InputStream is = GUI.class.getResourceAsStream("LeagueSpartan-Bold.ttf");
    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
    Font biggerFont = font.deriveFont(Font.BOLD, 48f);
@@ -27,7 +18,7 @@ public class GUI {
    frame.setResizable(false);
    frame.setSize(960, 540);
    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   frame.setTitle("GUI ting");
+   frame.setTitle("Motiva");
    frame.getContentPane().setBackground(new Color(0x34495E));
    frame.setVisible(true);
  }
