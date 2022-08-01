@@ -6,11 +6,16 @@ import javax.swing.JLabel;
 
 public class Summary extends JFrame {
 
+    
     public static void main(String[] args){
-    ImageIcon image = new ImageIcon("grade.png");
-    JLabel label = new JLabel(image);
+    ImageIcon A = new ImageIcon("assets/A.png");
+    ImageIcon B = new ImageIcon("assets/B.png");
+    ImageIcon C = new ImageIcon("assets/C.png");
+    ImageIcon D = new ImageIcon("assets/D.png");
+    ImageIcon F = new ImageIcon("assets/F.png");
+    JLabel label = new JLabel(A);
     label.setText("You got an A+!(100%)");
-    label.setIcon(image);
+    label.setIcon(A);
     label.setHorizontalTextPosition(JLabel.CENTER);
     label.setVerticalTextPosition(JLabel.TOP);
 
