@@ -1,60 +1,98 @@
-//Aranyak lines 1-60
-//Comments: I have put all questions there and made a new JFrame, but the questions are overlapping
-//Need to figure out how to make them not overlap then make buttons
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+// Krishay
+
 import java.awt.*;
+import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.io.FileWriter;
 
 public class MainPage extends JFrame{
-    public static void main(String args[]){
-        window();
-        
-        
+    public static void main(String[] args) {
+        new MainPage();
     }
 
-    public static void window(){
-        JLabel label = new JLabel("How many hours of sleep did you get today?");
-        JPanel panel = new JPanel();
-        label.setAlignmentX(0);
-        label.setAlignmentY(0);
-        label.setHorizontalTextPosition(JLabel.RIGHT);
-        label.setBounds(50,200,20,30);
-        JLabel label2 = new JLabel("How many servings of fruits or vegetables did you eat today?");
-        label2.setAlignmentX(100);
-        label2.setAlignmentY(100);
-        label2.setHorizontalTextPosition(JLabel.LEFT);
-        label2.setBounds(50,100,20,30);
-        JLabel label3 = new JLabel("How many glasses of water did you drink today?");
-        label3.setAlignmentX(200);
-        label3.setAlignmentY(200);
-        label3.setHorizontalTextPosition(JLabel.LEFT);
-        label3.setBounds(200,150,20,30);
-        JLabel label4 = new JLabel("How many minutes did you exercise for today?");
-        label4.setAlignmentX(300);
-        label4.setAlignmentY(300);
-        label4.setHorizontalTextPosition(JLabel.RIGHT);
-        label4.setBounds(50,100,20,30);
-        JFrame window = new JFrame("Please answer the following questions!");
-        panel.setVisible(true);
-        panel.setSize(960,540);
-        panel.add(label);
-        panel.add(label2);
-        panel.add(label3);
-        panel.add(label4);
-        window.setSize(960,540);
-        window.add(panel);
-        label.setLocation(100, 100);
-        label2.setLocation(100, 500);
-        label3.setLocation(400, 100);
-        label4.setLocation(400, 500);
-        window.setVisible(true);
+    public MainPage(){
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run(){
+                JFrame frame = new JFrame("Motiva");
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setSize(new Dimension(960, 540));
+                frame.setResizable(false);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                //frame.getContentPane().setBackground(new Color(0x34495E));
+                try {
+                    frame.add(new Pane());
+                } catch (FontFormatException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-        
-        
+    public class Pane extends JPanel {
+        public Pane() throws FontFormatException, IOException {
+            setLayout(new GridBagLayout());
+            setBackground(new Color(0x34495E));
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.insets = new Insets(-5, 8, 70, 8);
 
+            add(makeQuestionPane("How many hours of sleep did you get today?", new String[]{"5 hours", "6 hours", "7 hours", "8 hours", "9 hours", "10 hours"}), gbc);
+            add(makeQuestionPane("How many glasses of water did you drink today?", new String[]{"3 glasses", "4 glasses", "5 glasses", "6 glasses", "7 glasses", "8 glasses", "9 glasses", "10 glasses"}), gbc);
+            add(makeQuestionPane("How many servings of fruits did you eat today?", new String[]{"2", "3", "4", "5", "6", "7"}), gbc);
+            add(makeQuestionPane("How many minutes have you exercised for today?", new String[]{"0-20 min", "21-40 min", "41-60 min", "1 - 1:30 hour/s", "1:30 - 2 hours", "2+"}), gbc);
+        }
 
+        protected JPanel makeQuestionPane(String question, String[] options) throws FontFormatException, IOException {
+            InputStream is = askQuestions.class.getResourceAsStream("GlacialIndifference-Regular.ttf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            Font biggerFont = font.deriveFont(Font.BOLD, 24f);
+            FileWriter fw = new FileWriter("main_ans.txt", true);
+            PrintWriter pw = new PrintWriter(fw);
+            JPanel questionPane = new JPanel(new BorderLayout());
+            JLabel label = new JLabel(question, JLabel.CENTER);
+            label.setFont(biggerFont); 
+            label.setForeground(new Color(0x38B6FF));
+            questionPane.add(label, BorderLayout.NORTH);
+            ButtonGroup q1BG = new ButtonGroup();
+            JPanel optionsPane = new JPanel(new GridBagLayout());
+            for (String option : options) {
+                JRadioButton btn = new JRadioButton(option);
+                btn.setForeground(Color.WHITE);
+                //btn.setVerticalTextPosition(JRadioButton.BOTTOM);
+                //btn.setHorizontalTextPosition(JRadioButton.CENTER);
+                q1BG.add(btn);
+                optionsPane.add(btn);
+            }
+            questionPane.add(optionsPane);
+            questionPane.setBackground(new Color(0x34495E));
+            optionsPane.setBackground(new Color(0x34495E));
+            UIManager.put("OptionPane.background", new ColorUIResource(52, 73, 94));
+            UIManager.put("Panel.background", new ColorUIResource(52, 73, 94));
+            UIManager.put("OptionPane.cancelButtonText", "Close");
+            UIManager.put("OptionPane.okButtonText", "Next");
+
+            int result = JOptionPane.showConfirmDialog(null, questionPane,  "Motiva", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.CANCEL_OPTION){
+                System.exit(0);
+            }else{
+                for (Enumeration<AbstractButton> buttons = q1BG.getElements(); buttons.hasMoreElements();) {
+                    AbstractButton button = buttons.nextElement();
+                    if (button.isSelected()) {
+                           pw.write(button.getText() + "\n");
+                    }
+                }
+            }
+            pw.close();
+            return questionPane;
+        }
     }
 }
