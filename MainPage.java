@@ -55,7 +55,7 @@ public class MainPage extends JFrame{
             InputStream is = askQuestions.class.getResourceAsStream("GlacialIndifference-Regular.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             Font biggerFont = font.deriveFont(Font.BOLD, 24f);
-            FileWriter fw = new FileWriter("main_ans.txt", true);
+            FileWriter fw = new FileWriter("main_ans.txt", false);
             PrintWriter pw = new PrintWriter(fw);
             JPanel questionPane = new JPanel(new BorderLayout());
             JLabel label = new JLabel(question, JLabel.CENTER);
