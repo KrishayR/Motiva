@@ -47,7 +47,7 @@ public class MainPage extends JFrame{
 
             add(makeQuestionPane("How many hours of sleep did you get today?", new String[]{"5 hours", "6 hours", "7 hours", "8 hours", "9 hours", "10 hours"}), gbc);
             add(makeQuestionPane("How many glasses of water did you drink today?", new String[]{"3 glasses", "4 glasses", "5 glasses", "6 glasses", "7 glasses", "8 glasses", "9 glasses", "10 glasses"}), gbc);
-            add(makeQuestionPane("How many servings of fruits did you eat today?", new String[]{"2", "3", "4", "5", "6", "7"}), gbc);
+            add(makeQuestionPane("How many servings of fruits did you eat today?", new String[]{"0", "1", "2", "3", "4", "5 or more"}), gbc);
             add(makeQuestionPane("How many minutes have you exercised for today?", new String[]{"0-20 min", "21-40 min", "41-60 min", "1 - 1:30 hour/s", "1:30 - 2 hours", "2+"}), gbc);
         }
 
@@ -55,7 +55,7 @@ public class MainPage extends JFrame{
             InputStream is = askQuestions.class.getResourceAsStream("GlacialIndifference-Regular.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             Font biggerFont = font.deriveFont(Font.BOLD, 24f);
-            FileWriter fw = new FileWriter("main_ans.txt", false);
+            FileWriter fw = new FileWriter("main_ans.txt", true);
             PrintWriter pw = new PrintWriter(fw);
             JPanel questionPane = new JPanel(new BorderLayout());
             JLabel label = new JLabel(question, JLabel.CENTER);
@@ -79,6 +79,7 @@ public class MainPage extends JFrame{
             UIManager.put("Panel.background", new ColorUIResource(52, 73, 94));
             UIManager.put("OptionPane.cancelButtonText", "Close");
             UIManager.put("OptionPane.okButtonText", "Next");
+
 
             int result = JOptionPane.showConfirmDialog(null, questionPane,  "Motiva", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.CANCEL_OPTION){
