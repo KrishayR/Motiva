@@ -1,6 +1,8 @@
 //Aranyak
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,8 +20,12 @@ public class Summary {
     
 
 
-    public Summary() throws IOException {
-        
+    public Summary() throws IOException, FontFormatException {
+        InputStream is = Summary.class.getResourceAsStream("GlacialIndifference-Regular.ttf");
+        Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+        Font biggerFont = font.deriveFont(20f);
+        Font smallerFont = font.deriveFont(15f);
+
         JFrame frame = new JFrame();
         frame.setLayout(new GridLayout(1,2));
 
@@ -103,6 +109,9 @@ public class Summary {
             BufferedReader buff1 = new BufferedReader(file1);
             String roundSleep = buff1.readLine();
             JLabel roundSleep1 = new JLabel("You slept for " + roundSleep + "!");
+            roundSleep1.setFont(biggerFont);
+            roundSleep1.setForeground(Color.WHITE);
+
             gbc.gridx = 0;
             gbc.gridy = 1;
             
@@ -115,6 +124,8 @@ public class Summary {
             gbc.gridx = 0;
             gbc.gridy = 6;
             cupsFeedback.setText("You were supposed to drink around " + cups + " cups of water");
+            cupsFeedback.setFont(smallerFont);
+            cupsFeedback.setForeground(new Color(0x38B6FF));
             panel.add(cupsFeedback,gbc);
             gbc.insets = new Insets(5, 0, 0, 0);
             gbc.ipady = 25;
@@ -122,6 +133,8 @@ public class Summary {
             
             String roundGlasses = buff1.readLine();
             JLabel roundGlasses1 = new JLabel("You drank " + roundGlasses + "!");
+            roundGlasses1.setFont(biggerFont);
+            roundGlasses1.setForeground(Color.WHITE);
             
             gbc.gridx = 0;
             gbc.gridy = 5;
@@ -130,6 +143,8 @@ public class Summary {
 
             String roundFruits = buff1.readLine();
             JLabel roundFruits1 = new JLabel("You ate " + roundFruits + " servings of fruits!");
+            roundFruits1.setFont(biggerFont);
+            roundFruits1.setForeground(Color.WHITE);
             gbc.gridx = 0;
             gbc.gridy = 8;
             
@@ -137,6 +152,8 @@ public class Summary {
 
             String roundExercise = buff1.readLine();
             JLabel roundExercise1 = new JLabel("You exercised for " + roundExercise + "!");
+            roundExercise1.setFont(biggerFont);
+            roundExercise1.setForeground(Color.WHITE);
             gbc.gridx = 0;
             gbc.gridy = 11;
             
@@ -146,6 +163,8 @@ public class Summary {
 
                 JLabel amountOfSleep = new JLabel();
                 amountOfSleep.setText("You were supposed to sleep for around 10 hours");
+                amountOfSleep.setFont(smallerFont);
+                amountOfSleep.setForeground(new Color(0x38B6FF));
                 gbc.gridx = 0;
                 gbc.gridy = 2;
                 panel.add(amountOfSleep,gbc);
@@ -156,6 +175,8 @@ public class Summary {
             else if(age>= 13 && age<= 18){
                 JLabel amountOfSleep = new JLabel();
                 amountOfSleep.setText("You were supposed to sleep for around 9 hours");
+                amountOfSleep.setFont(smallerFont);
+                amountOfSleep.setForeground(new Color(0x38B6FF));
                 gbc.gridx = 0;
                 gbc.gridy = 2;
                 panel.add(amountOfSleep,gbc);
@@ -165,6 +186,8 @@ public class Summary {
             else if(age>= 19 && age<= 60){
                 JLabel amountOfSleep = new JLabel();
                 amountOfSleep.setText("You were supposed to sleep for around 8 hours");
+                amountOfSleep.setFont(smallerFont);
+                amountOfSleep.setForeground(new Color(0x38B6FF));
                 gbc.gridx = 0;
                 gbc.gridy = 2;
                 panel.add(amountOfSleep,gbc);
@@ -173,6 +196,8 @@ public class Summary {
             }
             else if (age>60){
                 JLabel amountOfSleep = new JLabel();
+                amountOfSleep.setFont(smallerFont);
+                amountOfSleep.setForeground(new Color(0x38B6FF));
                 amountOfSleep.setText("You were supposed to sleep for around 7 hours");
                 gbc.gridx = 0;
                 gbc.gridy = 2;
@@ -183,6 +208,8 @@ public class Summary {
             //Exercising formulas
             if(age>=6 && age<= 17){
                 JLabel amountOfExercise = new JLabel();
+                amountOfExercise.setFont(smallerFont);
+                amountOfExercise.setForeground(new Color(0x38B6FF));
                 amountOfExercise.setText("You were supposed to exercise for around 1 hour");
                 gbc.gridx = 0;
                 gbc.gridy = 12;
@@ -192,6 +219,8 @@ public class Summary {
             }
             if(age>=6 && age<= 17){
                 JLabel amountOfExercise = new JLabel();
+                amountOfExercise.setFont(smallerFont);
+                amountOfExercise.setForeground(new Color(0x38B6FF));
                 amountOfExercise.setText("You were supposed to exercise for around 1 hour");
                 gbc.gridx = 0;
                 gbc.gridy = 12;
@@ -201,6 +230,8 @@ public class Summary {
             }
             else if(age>=18 && age<= 64){
                 JLabel amountOfExercise = new JLabel();
+                amountOfExercise.setFont(smallerFont);
+                amountOfExercise.setForeground(new Color(0x38B6FF));
                 amountOfExercise.setText("You were supposed to exercise for around 30 min - 1 hour");
                 gbc.gridx = 0;
                 gbc.gridy = 12;
@@ -210,6 +241,8 @@ public class Summary {
             }
             else if(age>=65){
                 JLabel amountOfExercise = new JLabel();
+                amountOfExercise.setFont(smallerFont);
+                amountOfExercise.setForeground(new Color(0x38B6FF));
                 amountOfExercise.setText("You were supposed to exercise for around 10-30 min");
                 gbc.gridx = 0;
                 gbc.gridy = 12;
@@ -220,6 +253,8 @@ public class Summary {
             
             JLabel amountOfFruits = new JLabel();
             amountOfFruits.setText("You were supposed to eat 2-3 servings of fruits");
+            amountOfFruits.setFont(smallerFont);
+            amountOfFruits.setForeground(new Color(0x38B6FF));
             gbc.gridx = 0;
             gbc.gridy = 9;
             panel.add(amountOfFruits,gbc);
@@ -245,6 +280,8 @@ public class Summary {
             ImageIcon D = new ImageIcon("assets/D.png");
             ImageIcon F = new ImageIcon("assets/F.png");
             label.setText("You got an B+!(90%)");
+            label.setFont(biggerFont);
+            label.setForeground(Color.WHITE);
             buffer.close();
             
 
@@ -252,11 +289,13 @@ public class Summary {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(960,540);
             frame.setVisible(true);
+            panel.setBackground(new Color(0x34495E));
+            panel2.setBackground(new Color(0x34495E));
         }
 
     }
 
-     public static void main(String[] args) throws IOException  {
+     public static void main(String[] args) throws IOException, FontFormatException  {
         Summary s = new Summary();
     }
 }
